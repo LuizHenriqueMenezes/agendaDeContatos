@@ -26,10 +26,15 @@ function cadastrarContato() {
                     })
 
                     // Redireciona pro index, depois do delay
-                    setTimeout()
+                    setTimeout(function(){
+                        window.location.href = "home.php"
+                    }, 2000)
                     
                 } else {
-                    
+                    $(data.campo).focus()
+                    $('#status').css({
+                        "color": "#ff6f65"
+                    })
                 }
 
             }, 1000);// pra dar tempo de aparecer o negócio carregando (1000 = 1 segundo)
