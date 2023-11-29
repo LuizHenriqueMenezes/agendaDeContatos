@@ -43,7 +43,8 @@
                         <input type="password" class="form-control" id="senha" placeholder="Informe uma Senha">
                     </div>
 
-                    <button type="button" class="btn btn-primary" id="cadastrar" onclick="cadastrarContato()">Cadastrar</button>
+                    <button type="button" class="btn btn-primary" id="cadastrar" onclick="cadastrarContato()">Cadastrar</button> 
+                    <!-- js vai pegar os dados e mandar pro phpmyadmin -->
                 </form>
 
                 <div id="status"></div> <!-- serve pra mostrar o status, tipo carregando, cadastrado etc -->
