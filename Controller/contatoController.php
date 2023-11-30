@@ -12,6 +12,8 @@ if(isset($_POST['cadastrar'])){ //verifica se veio do botão cadastrar
 
 function cadastrarContato(){
     //Inclui os arquivos(Model)
+    include_once "../Model/Contato.php";
+    include_once "../Model/ContatoService.php";
 
     //Retorno do JSON (validação) 
     header('Content-Type: application/json');
@@ -23,23 +25,38 @@ function cadastrarContato(){
     $sobrenome = $_POST['sobrenome'];
 
     //Cria objetos das classes Contato e ContatoService
+    $contato = new Contato();
+    $service = new ContatoService();
 
-    //Preenche o objeto com os dados informados
+    //Preenche os objeto com os dados informados
+    $contato->email     = $email;
+    $contato->senha     = $senha;
+    $contato->nome      = $nome;
+    $contato->sobrenome = $sobrenome;
 
     //Envia objeto pra efetuar o cadastro
-    $response = "";
+    $response = $service->cadastrarContatoService($contato);
 
     //Verifica o tempo de retorno
     if ($response['sucesso']) {
         //Mostra mensagem de sucesso
-        print json_encode('');
+        print json_encode(array(
+            'mensagem' => $response['mensagem'],
+            'codigo' => 1
+        ));
+
+        exit(); // se nada der certo, sai
         
     } else {
-        # code...
+        //Mostra mensagem de erro
+        print json_encode(array(
+            'mensagem' => $response['mensagem'],
+            'campo' => $response['campo'],
+            'codigo' => 0
+        ));
+
+        exit(); 
     }
-    
-
 }
-
 
 ?>
